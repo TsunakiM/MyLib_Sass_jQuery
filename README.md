@@ -1,1 +1,2 @@
-MyLib_Sass_jQuery
+# MyLib_Sass_jQuery
+Private library about Sass n jQuery for create Web

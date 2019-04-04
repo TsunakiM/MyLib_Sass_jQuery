@@ -1,0 +1,23 @@
+.arrow {
+  // Const
+  $posX: 95px;
+  $posY: 34px;
+  $rotateDeg: 45deg;
+  $arrowSize: 12px;
+  $color: #fff;
+  // END Const
+
+  position: relative;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 50%;
+    width: $arrowSize;
+    height: $arrowSize;
+    border-top: 2px solid $color;
+    border-right: 2px solid $color;
+    transform: translateX($posX) translateY($posY) rotate($rotateDeg);
+  }
+}
