@@ -1,20 +1,23 @@
 jQuery(function() {
   // MARK: URL取得
   let thisPageURL;
-  // ローカル環境URL
-  const testURL = "http://192.168.0.90:3000/";
-  // 本番環境URL
-  const prodURL = "https://hogehoge";
-  //
-  $(window).load(function() {
+  const targetURL = [
+    // ローカル環境URL
+    "http://192.168.0.90:3000/",
+    // ステージングURL
+    "https://stg-hogehoge/",
+    // 本番URL
+    "https://prd-hogehoge/"
+  ];
+  console.log(targetURL);
+  $(window).on("load", function() {
     thisPageURL = $(location).attr("href");
-    // console.log(thisPageURL);
   });
 
-  // MARK: 特定のURL以外でクラスの着脱
-  $(window).load(function() {
-    if (thisPageURL === testURL || thisPageURL === prodURL) {
-      $(".visible-control").addClass("visible");
+  // MARK: targetURL配列に、現在のURLが含まれている場合の処理
+  $(window).on("load", function() {
+    if (targetURL.includes(thisPageURL)) {
+      console.log("DebugLog: URL check is working");
     }
   });
 
@@ -23,7 +26,7 @@ jQuery(function() {
     let headerChangeThreshold;
 
     // URLで変化させる場合
-    if (thisPageURL === testURL || thisPageURL === prodURL) {
+    if (targetURL.includes(thisPageURL)) {
       headerChangeThreshold = 120;
     } else {
       headerChangeThreshold = 300;
