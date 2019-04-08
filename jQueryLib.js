@@ -14,7 +14,7 @@ jQuery(function() {
     thisPageURL = $(location).attr("href");
   });
 
-  // MARK: targetURL配列に、現在のURLが含まれている場合の処理
+  // targetURL配列に、現在のURLが含まれている場合の処理
   $(window).on("load", function() {
     if (targetURL.includes(thisPageURL)) {
       console.log("DebugLog: URL check is working");
@@ -26,7 +26,18 @@ jQuery(function() {
     let headerChangeThreshold;
 
     // URLで変化させる場合
+    let isURLmatch = false;
     if (targetURL.includes(thisPageURL)) {
+      isURLmatch = true;
+    }
+    // アンカーリンクにも適用する場合
+    for (let i = 0; i < targetURL.length; i++) {
+      let ankerURL = targetURL[i] + "#";
+      if (thisPageURL.match(ankerURL)) {
+        isURLmatch = true;
+      }
+    }
+    if (isURLmatch) {
       headerChangeThreshold = 120;
     } else {
       headerChangeThreshold = 300;
