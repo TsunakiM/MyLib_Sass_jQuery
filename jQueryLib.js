@@ -9,24 +9,15 @@ jQuery(function() {
     // 本番URL
     "https://prd-hogehoge/"
   ];
-  console.log(targetURL);
   $(window).on("load", function() {
     thisPageURL = $(location).attr("href");
   });
 
-  // targetURL配列に、現在のURLが含まれている場合の処理
+  let headerChangeThreshold;
+  // URLでの場合分け
   $(window).on("load", function() {
-    if (targetURL.includes(thisPageURL)) {
-      console.log("DebugLog: URL check is working");
-    }
-  });
-
-  // MARK: 条件でクラスの着脱
-  $(window).on("load scroll", function() {
-    let headerChangeThreshold;
-
-    // URLで変化させる場合
     let isURLmatch = false;
+    // targetURL配列に、現在のURLが含まれている場合の処理
     if (targetURL.includes(thisPageURL)) {
       isURLmatch = true;
     }
@@ -42,23 +33,25 @@ jQuery(function() {
     } else {
       headerChangeThreshold = 300;
     }
-
-    // PC,SPで変化させる場合
+  });
+  // ロード、スクロール時に何かする
+  $(window).on("load scroll", function() {
+    // PC,SPでhightに応じて変化させる場合
     const spBreakPoint = 768;
     let scrollY = window.pageYOffset; // 現在地
     let windowWidth = $(window).width();
     if (windowWidth <= spBreakPoint) {
       // SP時に変化させる高さ
-      heightThreshold = 1;
+      headerChangeThreshold = 1;
     } else {
       // PC時に変化させる高さ
-      heightThreshold = 120;
+      headerChangeThreshold = 120;
     }
-
     if (scrollY >= headerChangeThreshold) {
       $(".l-header").addClass("is-header-scrolled");
     } else {
       $(".l-header").removeClass("is-header-scrolled");
     }
+    /*** END ***/
   });
 });
