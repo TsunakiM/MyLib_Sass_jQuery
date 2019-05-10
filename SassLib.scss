@@ -1,3 +1,4 @@
+// CSS矢印
 .arrow {
   // Const
   $posX: 95px;
@@ -21,3 +22,48 @@
     transform: translateX($posX) translateY($posY) rotate($rotateDeg);
   }
 }
+
+// アニメーション設定用
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes $animation-name {
+    @content;
+  }
+  @-moz-keyframes $animation-name {
+    @content;
+  }
+  @keyframes $animation-name {
+    @content;
+  }
+}
+
+@include keyframes(fadeIn) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@mixin animation(
+  $name: fadeIn,
+  $duration: 1s,
+  $timing-function: ease,
+  $delay: 0s,
+  $iteration-count: 1,
+  $direction: forwards
+) {
+  animation: $name $duration $timing-function $delay $iteration-count $direction;
+  -webkit-animation: $name $duration $timing-function $delay $iteration-count
+    $direction;
+}
+/* @include for copy
+@include animation(
+  $name: fadeIn,
+  $duration: 1s,
+  $timing-function: ease,
+  $delay: 0s,
+  $iteration-count: 1,
+  $direction: forwards
+);
+*/
