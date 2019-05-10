@@ -51,11 +51,13 @@
   $timing-function: ease,
   $delay: 0s,
   $iteration-count: 1,
-  $direction: forwards
+  $direction: normal,
+  $fill-mode: forwards
 ) {
-  animation: $name $duration $timing-function $delay $iteration-count $direction;
+  animation: $name $duration $timing-function $delay $iteration-count $direction
+    $fill-mode;
   -webkit-animation: $name $duration $timing-function $delay $iteration-count
-    $direction;
+    $direction $fill-mode;
 }
 /* @include for copy
 @include animation(
@@ -64,6 +66,7 @@
   $timing-function: ease,
   $delay: 0s,
   $iteration-count: 1,
-  $direction: forwards
+  $direction: normal,
+  $fill-mode: forwards
 );
 */
