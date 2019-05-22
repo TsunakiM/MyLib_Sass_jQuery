@@ -18,6 +18,9 @@ add_action('publish_hogehoge', 'add_defaultcategory_automatically');
 
 
 // MARK: 「x件中 / n-m 件表示」のパーツ
+// 1ページ目が0になるのを1に置き換える
+$paged = get_query_var('paged') ?: 1;
+
 global $wp_query;
 $perPage = POSTSPERPAGE; // 本体で表示している記事数
 $nowPage = get_query_var('paged');
