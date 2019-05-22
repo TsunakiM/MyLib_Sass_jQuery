@@ -17,4 +17,14 @@ function add_defaultcategory_automatically($post_ID) {
 add_action('publish_hogehoge', 'add_defaultcategory_automatically');
 
 
-
+// MARK: 「x件中 / n-m 件表示」のパーツ
+global $wp_query;
+$perPage = POSTSPERPAGE; // 本体で表示している記事数
+$nowPage = get_query_var('paged');
+$allPageNum = $wp_query->found_posts;
+$startPageNum = ($perPage * ($nowPage - 1)) + 1;
+$endPageNum = ($perPage * $nowPage);
+if($endPageNum > $allPageNum) {
+    $endPageNum = $allPageNum;
+}
+echo $allPageNum . ' 件中 / ' . $startPageNum . '-' . $endPageNum . ' 件表示';
